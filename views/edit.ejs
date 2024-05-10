@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <div class="main w-full text-white min-h-screen bg-zinc-800 p-7">
+       <a class="text-blue-400 font-semibold py-1 px-3 rounded-md" href="/profile">Go to profile</a>
+      <form class="flex flex-col" method="post" action="/update/<%=post._id%>">
+        <textarea class="bg-transparent outline-none w-72 h-20 mt-4 text-xs text-zinc-400 border-[1px] p-2 rounded-md border-zinc-400 resize-none" name="content"><%=post.content%></textarea>
+        <input class="bg-yellow-500 w-40 p-2 rounded-md mt-3" type="submit" value="Update Post">
+      </form>   
+    </div>
+</body>
+</html>

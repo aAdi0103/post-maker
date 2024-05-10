@@ -1,0 +1,10 @@
+fisrt we have to create a '/' route to register a user
+
+before creating a user in database we must need to check that does that user already
+exist if exist not allow to create account else create it before creating the account 
+make sure to generate salt to hash password make sure at the end of creation of acccount 
+that you are logged in using jwt token and cookies
+
+to login we need to check that the email entered is in the database or not if not redirect it to login page
+otherwise now its important to check weather the password related to that email id is correct
+or not using bcrypt.comapre if we found result set the token

@@ -1,0 +1,1 @@
+"req.cookies.token" main incoming cookie hoti hai jo server se aati hai

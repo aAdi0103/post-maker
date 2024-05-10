@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <div class="main w-full text-white min-h-screen bg-zinc-800 p-7">
+      <div class="nav flex justify-between">
+        <div class="nav-left">
+        <div class="flex items-center gap-3">
+          <div class="imga w-14 h-14 rounded-full overflow-hidden relative">
+            <a class="absolute text-black bottom-0 right-2" href="/upload"><i class="ri-pencil-line"></i></a>
+            <img class="h-full w-full object-cover" src="/images/uploads/<%=user.profilepic%>" alt="">
+          </div>
+          <h1 class="text-white font-semibold text-2xl tracking-tighter">Hello , <%= user.name%> 👋🏻 </h1>
+        </div>
+            <p class="text-xs text mt-3">You can Create a new post</p>
+        </div>
+        <a class="bg-red-500 font-semibold py-1 h-10 px-3 rounded-md" href="/logout">Logout</a>
+      </div>
+      <form class="flex flex-col" method="post" action="/post">
+        <textarea class="bg-transparent outline-none w-72 h-20 mt-4 text-xs text-zinc-400 border-[1px] p-2 rounded-md border-zinc-400 resize-none" placeholder="What's On your Mind?" name="content"></textarea>
+        <input class="bg-blue-400 w-40 p-2 rounded-md mt-3" type="submit" value="Create New Post">
+      </form>
+      <h1 class="mt-9 text-zinc-400 font-normal text-lg">Your Posts .</h1>
+      <div class="flex flex-col gap-1">
+        <% user.posts.reverse().forEach(function(posts){%>
+          <div class="w-[28vw] min-h-fit bg-zinc-500 rounded-md mt-4 p-2 ">
+            <h1 class="text-blue-500 text-[1.2vw]">@<%=user.username%></h1>
+            <p class="text-sm text-white"><%=posts.content%></p>
+            <p class="mt-1 text-xs text-orange-500"><%=posts.likes.length%> likes</p>
+            <div class="flex gap-3 items-center mt-2 justify-between">
+               <div class="flex items-center gap-2">
+                <div class="like w-16 flex items-center justify-center px-5 py-1 rounded-md 
+    <% if (posts.likes.indexOf(user._id) !== -1) { %>bg-red-600<% } else { %>bg-red-400<% } %>">
+    <a class="text-white text-[12px] flex gap-1" href="/likes/<%=posts._id%>">
+        <i class="ri-heart-3-line"></i>
+        <%= posts.likes.indexOf(user._id) === -1 ? "like" : "Unlike" %>
+    </a>
+</div>
+
+                   <a class="text-zinc-300 text-xs" href="/edit/<%=posts._id%>">Edit</a>
+               </div>
+               <a class="text-red-500 text-xs font-semibold " href="/delete/<%=posts._id%>">Delete</a>
+            </div>
+        </div>
+         <%})%>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
